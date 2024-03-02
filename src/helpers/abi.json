@@ -1,0 +1,267 @@
+ [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "remitente",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "monto",
+          "type": "uint256"
+        }
+      ],
+      "name": "FondosRecibidos",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "idTransaccion",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "firmante",
+          "type": "address"
+        }
+      ],
+      "name": "TransaccionConfirmada",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "idTransaccion",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "remitente",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "valor",
+          "type": "uint256"
+        }
+      ],
+      "name": "TransaccionCreada",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "idTransaccion",
+          "type": "uint256"
+        }
+      ],
+      "name": "TransaccionEjecutada",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "confirmaciones",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idTransaccion",
+          "type": "uint256"
+        }
+      ],
+      "name": "confirmarTransaccion",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "contadorTransferencias",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "destino",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "firmante1",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "firmante2",
+          "type": "address"
+        }
+      ],
+      "name": "crearTransaccion",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idTransaccion",
+          "type": "uint256"
+        }
+      ],
+      "name": "forzarEnvioTransaccion",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "obtenercontado",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "propietarioContrato",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "idTransaccion",
+          "type": "uint256"
+        }
+      ],
+      "name": "revertirTransaccion",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "transacciones",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "destino",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "valor",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "ejecutada",
+          "type": "bool"
+        },
+        {
+          "internalType": "address",
+          "name": "firmante1",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "firmante2",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "marcaTiempo",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "creador",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ]
