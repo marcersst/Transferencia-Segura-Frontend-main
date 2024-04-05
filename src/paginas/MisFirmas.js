@@ -1,25 +1,100 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { useContrato } from '../context/contextApp';
+import axios from "axios";
+import { Cargando } from '../helpers/Cargando';
+import { SinTransferencias } from '../helpers/SinTransferencias';
+import { CajaTransferencia } from '../helpers/CajaTransferencia';
+import { creation } from '../componentes/assets';
+import { VentanaEmergente } from '../helpers/VentanaEmergente';
 
 export const MisFirmas = () => {
-    const { obtenerTransaccion, verificarConfirmacion } = useContrato();
+  const { signer } = useContrato();
+  const [misFirmas, setmisFirmas] = useState([]);
 
-    useEffect(() => {
-        const obtenerInfoTransaccion = async () => {
-            const idTransaccion = 5; // ID de la transacción que deseas obtener
-            const transaccion = await obtenerTransaccion(idTransaccion);
-            console.log('Transacción:', transaccion);
-            const confirmacion = await verificarConfirmacion(5,"0xe71949ec34538d7db0059291db7f987225b4103e");
-            console.log('Confirmación:', confirmacion);
-        };
+  const [ventanaEmergenteVisible, setVentanaEmergenteVisible] = useState(false);
+  const [transferenciaSeleccionada, setTransferenciaSeleccionada] = useState(null);
 
-        obtenerInfoTransaccion();
-    }, [obtenerTransaccion, verificarConfirmacion]);
+  const [estaCargando, setEstaCargando]=useState(true)
 
-    return (
-        <div>
-            {}
-        </div>
-    );
-}
 
+
+
+  const abrirVentanaEmergente= (transferencia) =>{
+    setTransferenciaSeleccionada(transferencia);
+    setVentanaEmergenteVisible(true);
+  }
+  const cerrarVentanaEmergente= () =>{
+    setTransferenciaSeleccionada(null);
+    setVentanaEmergenteVisible(false);
+  }
+
+
+
+  useEffect(() => {
+    const ObtenerTransferencias = async () => {
+      if(signer){
+        
+        try {
+          
+          const firmante = await signer;
+          const firmanteLowerCase = firmante.toLowerCase();
+          console.log(firmanteLowerCase)
+  
+          const respuesta = await axios.get(`https://backend-transferencia-segura-production.up.railway.app/api/transferencias/?firmantes=${firmanteLowerCase}`);
+  
+          if (respuesta.data && respuesta.data.transferencias) {
+            setmisFirmas(respuesta.data.transferencias);
+          }
+          
+          setEstaCargando(false)
+        } catch (error) {
+          console.error("Hubo un error al obtener datos desde la base de Mongo ", error);
+          setEstaCargando(false)
+        }
+      }
+      else{setEstaCargando(false)}
+    };
+
+    ObtenerTransferencias();
+  }, [signer]); 
+
+
+  return (
+    <>
+    <div className="flex flex-wrap">
+      {estaCargando ? (
+        <Cargando/>
+      ) 
+      : 
+      (
+        <>
+          {misFirmas.length === 0 ? (
+            <SinTransferencias />
+          ) 
+          :
+          (
+            misFirmas.map((transaccion, index) => (
+            <div key={index} className="mx-2 my-2">
+                <CajaTransferencia
+               img={<img className='w-24 mx-8' src={creation} alt="billetera" />}
+               transferencias={transaccion} 
+               onClick={() => abrirVentanaEmergente(transaccion)}
+           />
+           </div>
+            ))
+            
+          )}
+        </>
+      )}
+
+      <VentanaEmergente
+        visible={ventanaEmergenteVisible}
+        onClose={cerrarVentanaEmergente}
+        transaccion={transferenciaSeleccionada}
+        esMisFirmas={true}
+      />
+    </div>
+  </>
+);
+};

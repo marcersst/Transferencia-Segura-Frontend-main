@@ -1,7 +1,7 @@
 {
     "Crear_Transferencia_Segura": "Crear Transferencia Segura",
-    "valor": "Valor",
-    "Valor_Eth": "Valor en ETH",
+    "valor": "Cantidad",
+    "Valor_Eth": "",
     "Firmante_1": "Firmante 1 ",
     "Firmante_2": "Firmante 2 ",
     "Destino": "Destino",
@@ -40,6 +40,7 @@
     "sinconectar" : "Conectate a Metamask para ver las transferencias",
     "creando": "Creando transacción",
     "esperar":"Por favor espere",
+    "moneda":"Seleccionar moneda:",
     "Explicacion":"Esta Dapp de seguridad brinda a los usuarios la capacidad de crear Transferencias Personalizadas. Los usuarios deben especificar el destinatario de la transacción, así como las dos firmas requeridas para su aprobación y ejecución. Esto garantiza un nivel excepcional de control y seguridad en cada transacción, ya que se requiere una validación doble antes de que la transferencia se complete con éxito.A continuacion una breve video de explicacion:"
   }
   

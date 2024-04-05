@@ -9,16 +9,13 @@ import { creation } from '../componentes/assets';
 import { VentanaEmergente } from '../helpers/VentanaEmergente';
 
 export const MisCreaciones = () => {
-  const { signer } = useContrato();
+  const { signer, contrato } = useContrato();
   const [misCreaciones, setMisCreaciones] = useState([]);
 
   const [ventanaEmergenteVisible, setVentanaEmergenteVisible] = useState(false);
   const [transferenciaSeleccionada, setTransferenciaSeleccionada] = useState(null);
 
   const [estaCargando, setEstaCargando]=useState(true)
-
-  const [contador, setContador]= useState(1)
-
 
 
   const abrirVentanaEmergente= (transferencia) =>{
@@ -31,16 +28,13 @@ export const MisCreaciones = () => {
   }
 
 
-
   useEffect(() => {
     const ObtenerTransferencias = async () => {
       if(signer){
         
         try {
-          // Espera a que signer esté disponible
-          
+
           const creador = await signer;
-          // Convierte a minúsculas
           const creadorLowerCase = creador.toLowerCase();
   
           const respuesta = await axios.get(`https://backend-transferencia-segura-production.up.railway.app/api/transferencias/?creador=${creadorLowerCase}`);
@@ -50,11 +44,8 @@ export const MisCreaciones = () => {
           }
           
           setEstaCargando(false)
-          setContador(+1)
-          console.log(respuesta.data); // Imprime la respuesta de la API
-          console.log(contador)
         } catch (error) {
-          console.error("Hubo un error al obtener datos desde la base de Mongo ", error);
+          console.error("error al obtener datos desde la base de Mongo ", error);
           setEstaCargando(false)
         }
       }
@@ -63,12 +54,11 @@ export const MisCreaciones = () => {
 
     ObtenerTransferencias();
   }, [signer]); 
-  // El estado se actualizará y este console.log reflejará el cambio
-  console.log(misCreaciones);
+ 
 
   return (
     <>
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-start">
       {estaCargando ? (
         <Cargando/>
       ) : (
@@ -77,10 +67,10 @@ export const MisCreaciones = () => {
             <SinTransferencias />
           ) : (
             misCreaciones.map((transaccion, index) => (
-              <div key={index} className="ml-1 mx-auto my-auto">
+              <div key={index} className="mx-2 my-2">
                 <CajaTransferencia
                   img={<img className='w-24 mx-8' src={creation} alt="billetera" />}
-                  transferencias={transaccion} // Asegúrate de pasar la prop correctamente
+                  transferencias={transaccion}
                   onClick={() => abrirVentanaEmergente(transaccion)}
                 />
               </div>
@@ -94,7 +84,7 @@ export const MisCreaciones = () => {
         visible={ventanaEmergenteVisible}
         onClose={cerrarVentanaEmergente}
         transaccion={transferenciaSeleccionada}
-        esmisCreaciones={true}
+        esmisCreaciones={false}
       />
     </div>
   </>

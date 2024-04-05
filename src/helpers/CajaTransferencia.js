@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
@@ -6,16 +6,35 @@ import { useContrato } from '../context/contextApp';
 
 export const  CajaTransferencia=({ transferencias, onClick, img })=> {
    
-  const {signer, verificarConfirmacion}= useContrato();  
+  const {signer,contrato}= useContrato();  
   const { t } = useTranslation(); 
   const direccionRecortada =
     transferencias.destinatario.slice(0, 4) + '...' + transferencias.destinatario.slice(-4);
 
+  const [ejecutada, setEjecutada]= useState(null)
+
+    useEffect(() => {
+      async function verificarEjecucion() {
+        if (transferencias) {
+          try {
+            // aca  accedo al mapeo de mi contrato para verificar si mi transferencias esta confirmada, esto me devuelve true o false
+            const contract = contrato.contract;
+            const transaccion = await contract.transacciones(transferencias.id);
+            setEjecutada(transaccion.ejecutada);
+          } catch (error) {
+            console.error('Error al verificar si ya firmaste la transacción:', error);
+          }
+        }
+      }
+  
+      verificarEjecucion();
+    }, [ contrato, transferencias]);
+    
 
 
   return (
     <div
-      className="bg-purple-100 rounded p-3 shadow-lg mx-2 my-1 inline-block cursor-pointer transition-transform hover:scale-105 hover:bg-purple-300 animate__animated animate__fadeInDown"
+      className="bg-purple-100 rounded p-3 shadow-lg mx-2 my-2 cursor-pointer transition-transform hover:bg-purple-300 animate__animated animate__fadeInDown"
       style={{ width: '180px' }} 
       onClick={() => onClick(transferencias)}
     >
@@ -27,7 +46,7 @@ export const  CajaTransferencia=({ transferencias, onClick, img })=> {
 
       <p>
         {t('Ejecutada')} {' '}
-        {verificarConfirmacion(transferencias.id,signer)=== true ? (
+        {ejecutada ? (
           <FontAwesomeIcon icon={faCircleCheck} size="xl" style={{ color: '#043503' }} />
         ) : (
           <FontAwesomeIcon icon={faCircleXmark} size="xl" style={{ color: '#fb0404' }} />

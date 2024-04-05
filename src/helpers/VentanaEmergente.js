@@ -11,7 +11,7 @@ import { useContrato } from '../context/contextApp';
 
 export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas }) => {
   const { t } = useTranslation(); 
-  const { contrato, signer, verificarConfirmacion } = useContrato();
+  const { contrato, signer } = useContrato();
   const [confirmacionEnProgreso, setConfirmacionEnProgreso] = useState(false);
   const [confirmacionExitosa, setConfirmacionExitosa] = useState(false);
   const [errorConfirmacion, setErrorConfirmacion] = useState(null);
@@ -38,7 +38,6 @@ export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas })
           const contract = contrato.contract;
 
           const estaFirmada = await contract.confirmaciones(transaccion.id, userAddress);
-        
           setYaFirmado(estaFirmada);
         } catch (error) {
           console.error('Error al verificar si ya firmaste la transacción:', error);
@@ -52,7 +51,7 @@ export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas })
   const firmarTransaccion = async () => {
     setConfirmacionEnProgreso(true);
     try {
-      const transactionResponse = await contrato.contract.confirmarTransaccion(transaccion.id);
+      const transactionResponse = await contrato.contract.firmarTransferencia(transaccion.id);
       await transactionResponse.wait();
       setConfirmacionExitosa(true);
       //actualizamos el estado de la firma a true 
@@ -66,7 +65,6 @@ export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas })
   };
 
   if (!visible) return null;
-
   return (
     <div className="fixed inset-0 z-10 h-screen bg-[rgba(0,0,0,0.7)] flex items-center justify-center flex-col animate__animated animate__fadeIn">
       <div className="bg-gray-800 text-white rounded-lg p-4 mx-auto max-w-[80%] relative"> 
@@ -74,7 +72,7 @@ export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas })
           {t('Cerrar')}
         </button>
 
-        {confirmacionEnProgreso && <CargandoFirma />}
+        {confirmacionEnProgreso && <CargandoFirma pagina="Firmando" />}
 
 
         <h2 className="text-xl mb-4">
@@ -82,7 +80,7 @@ export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas })
         </h2>
         <div>
           <p>
-            <span className="font-bold">{t('Destino')}:</span> {transaccion.destino}
+            <span className="font-bold">{t('Destino')}:</span> {transaccion.destinatario}
           </p>
 
           <p>
@@ -109,7 +107,7 @@ export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas })
             <span className="font-bold">{t('Fecha')}</span> {transaccion.fecha}
           </p>
           <p>
-            <span className="font-bold">{t('Ejecutada')}</span> {verificarConfirmacion(transaccion.id,signer)=== true ? "SI" : "NO"}
+            <span className="font-bold">{t('Descripcion')}:</span> {transaccion.descripcion}
           </p>
         </div>
 

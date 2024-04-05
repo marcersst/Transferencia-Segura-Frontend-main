@@ -1,7 +1,7 @@
 {
   "Crear_Transferencia_Segura": "Create Secure Transfer",
   "valor": "Value",
-  "Valor_Eth": "ETH Value",
+  "Valor_Eth": "",
   "Firmante_1": "Signer 1",
   "Firmante_2": "Signer 2",
   "Destino": "Destination",
@@ -40,6 +40,7 @@
   "Explicacion": "This security Dapp provides users with the ability to create Customized Transfers. Users must specify the transaction recipient, as well as the two required signatures for approval and execution. This ensures an exceptional level of control and security in each transaction, as double validation is required before the transfer is successfully completed. Below is a brief explanatory video:",
   "sinconectar" : "Plese connect to Metamask to view the transfers",
   "creando": "Creating Transaction",
-  "esperar":"Please wait"
+  "esperar":"Please wait",
+  "moneda": "Select a currency:"
 
 }

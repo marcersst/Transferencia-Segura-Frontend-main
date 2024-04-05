@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Formulario = ({ labelName, placeholder, inputType, isTextArea, value, handleChange }) => {
+export const Formulario = ({ labelName, placeholder, inputType, isTextArea, value, handleChange,maxLength }) => {
   return (
     <label className="flex-1 w-full flex flex-col">
       {labelName && (
@@ -18,6 +18,7 @@ export const Formulario = ({ labelName, placeholder, inputType, isTextArea, valu
       ) : (
         <input 
           required
+          maxLength={maxLength}
           value={value}
           onChange={handleChange}
           type={inputType}

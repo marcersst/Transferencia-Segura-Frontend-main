@@ -21,17 +21,17 @@ const ContratoProvider = ({ children }) => {
     const esInicio = location.pathname === '/';
     const navigate = useNavigate();
 
-    const obtenerTransaccion = async (id) => {
+    const obtenerEjecucion= async (id) => {
         try {
             const transaccion = await contrato.contract.transacciones(id);
-            return transaccion;
+            return transaccion
+            
         } catch (error) {
             console.error('Error al obtener la transacción:', error);
             return null;
         }
     };
 
-    // Función para verificar si una transacción está confirmada por una dirección
     const verificarConfirmacion = async (id, direccion) => {
         try {
             const confirmacion = await contrato.contract.confirmaciones(id, direccion);
@@ -60,7 +60,7 @@ const ContratoProvider = ({ children }) => {
             alert('Por favor, conéctese a una red SEPOLIA para utilizar la app.');
             } else {
             try {
-                const contractAddres = '0xBE8e62CA2B6c87684030463af9CfA5E2342a0526';
+                const contractAddres = '0xEFB9A1Fd020ff50831e51092e75D376DAe42981b';
                 const contractABI = abi;
 
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
@@ -79,6 +79,11 @@ const ContratoProvider = ({ children }) => {
                 setContrato({ provider, signer, contract });
 
                 console.log('Dirección conectada:', selectedAddress);
+
+                const transaccion= await contrato.contract.transferencias()
+
+
+
             } catch (error) {
                 console.error('Error al conectar a MetaMask:', error);
             }
@@ -95,7 +100,7 @@ const ContratoProvider = ({ children }) => {
     }
 
     return (
-        <AppContext.Provider value={{ contrato, conectarContrato, setAccount, account, signer,setSigner, idioma, setIdioma, activo, setActivo, esInicio, obtenerTransaccion, verificarConfirmacion}}>
+        <AppContext.Provider value={{ contrato, conectarContrato, setAccount, account, signer,setSigner, idioma, setIdioma, activo, setActivo, esInicio, obtenerEjecucion, verificarConfirmacion}}>
             {children}
         </AppContext.Provider>
     );
