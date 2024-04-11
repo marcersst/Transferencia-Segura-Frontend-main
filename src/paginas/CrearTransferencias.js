@@ -67,14 +67,24 @@ export const CrearTransferencias = () => {
 
         const provider = new ethers.providers.Web3Provider(ethereum);
         const firmante = provider.getSigner();
+
+        const valorEnWei = ethers.utils.parseUnits(valor, 6);
+
+
+
+
         const usdtContrato = new ethers.Contract(usdtContractAddress, abi, firmante);
-        await usdtContrato.approve(signer, 0);
+        const tx = await usdtContrato.approve("0x1122cFC291776DA2015E41c6bdeb2466BE25ED2a", valorEnWei, {gasLimit: 1000000 });
+        await tx.wait();
+
+
+
 
         transaccionRespuesta = await contract.crearTransferenciaUsdt(
           destinoAddress,
           firmante1Address,
           firmante2Address,
-          valor
+          valorEnWei
         );
       } else {
         throw new Error('Moneda no válida');
@@ -94,7 +104,7 @@ export const CrearTransferencias = () => {
       const idTransaccion = transaccionesCount.toNumber();
 
       const response = await fetch(
-        'https://backend-transferencia-segura-production.up.railway.app/api/transferencias',
+        'http://transferenciasegura.sa-east-1.elasticbeanstalk.com/api/transferencias/',
         {
           method: 'POST',
           headers: {
@@ -110,6 +120,7 @@ export const CrearTransferencias = () => {
             ejecutada: false,
             fecha: new Date().toLocaleString(),
             descripcion: descripcion,
+            moneda: moneda
           }),
         }
       );

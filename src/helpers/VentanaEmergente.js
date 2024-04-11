@@ -84,7 +84,7 @@ export const VentanaEmergente = ({ visible, onClose, transaccion, esMisFirmas })
           </p>
 
           <p>
-            <span className="font-bold">{t('Valor_en_ETH')}</span> {transaccion.valor}
+            <span className="font-bold">{t('Valor_en_ETH')}</span>: {transaccion.valor} {transaccion.moneda}
           </p>
 
           <p>

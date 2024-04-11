@@ -60,7 +60,7 @@ const ContratoProvider = ({ children }) => {
             alert('Por favor, conéctese a una red SEPOLIA para utilizar la app.');
             } else {
             try {
-                const contractAddres = '0xEFB9A1Fd020ff50831e51092e75D376DAe42981b';
+                const contractAddres = '0x1122cFC291776DA2015E41c6bdeb2466BE25ED2a';
                 const contractABI = abi;
 
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
@@ -78,14 +78,7 @@ const ContratoProvider = ({ children }) => {
 
                 setContrato({ provider, signer, contract });
 
-                console.log('Dirección conectada:', selectedAddress);
-
-                const transaccion= await contrato.contract.transferencias()
-
-
-
             } catch (error) {
-                console.error('Error al conectar a MetaMask:', error);
             }
             }
         } else {

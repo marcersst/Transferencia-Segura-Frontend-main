@@ -9,7 +9,7 @@ import { creation } from '../componentes/assets';
 import { VentanaEmergente } from '../helpers/VentanaEmergente';
 
 export const MisCreaciones = () => {
-  const { signer, contrato } = useContrato();
+  const { signer } = useContrato();
   const [misCreaciones, setMisCreaciones] = useState([]);
 
   const [ventanaEmergenteVisible, setVentanaEmergenteVisible] = useState(false);
@@ -37,7 +37,7 @@ export const MisCreaciones = () => {
           const creador = await signer;
           const creadorLowerCase = creador.toLowerCase();
   
-          const respuesta = await axios.get(`https://backend-transferencia-segura-production.up.railway.app/api/transferencias/?creador=${creadorLowerCase}`);
+          const respuesta = await axios.get(`http://transferenciasegura.sa-east-1.elasticbeanstalk.com/api/transferencias/?creador=${creadorLowerCase}`);
   
           if (respuesta.data && respuesta.data.transferencias) {
             setMisCreaciones(respuesta.data.transferencias);

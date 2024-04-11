@@ -41,7 +41,7 @@ export const MisFirmas = () => {
           const firmanteLowerCase = firmante.toLowerCase();
           console.log(firmanteLowerCase)
   
-          const respuesta = await axios.get(`https://backend-transferencia-segura-production.up.railway.app/api/transferencias/?firmantes=${firmanteLowerCase}`);
+          const respuesta = await axios.get(`http://transferenciasegura.sa-east-1.elasticbeanstalk.com/api/transferencias/?firmantes=${firmanteLowerCase}`);
   
           if (respuesta.data && respuesta.data.transferencias) {
             setmisFirmas(respuesta.data.transferencias);

@@ -19,7 +19,7 @@ export const  CajaTransferencia=({ transferencias, onClick, img })=> {
           try {
             // aca  accedo al mapeo de mi contrato para verificar si mi transferencias esta confirmada, esto me devuelve true o false
             const contract = contrato.contract;
-            const transaccion = await contract.transacciones(transferencias.id);
+            const transaccion = await contract.transferencias(transferencias.id);
             setEjecutada(transaccion.ejecutada);
           } catch (error) {
             console.error('Error al verificar si ya firmaste la transacción:', error);
@@ -41,7 +41,7 @@ export const  CajaTransferencia=({ transferencias, onClick, img })=> {
       {img}
       <div className="flex justify-center items-center"></div>
       <h3 className="text-xl font-semibold">{direccionRecortada}</h3>
-      <p className="text-gray-600">{t('Valor_en_ETH')} {transferencias.valor}</p>
+      <p className="text-gray-600">{t('Valor_en_ETH')}: {transferencias.valor} {transferencias.moneda} </p>
       <p className="text-gray-600">{t('Fecha')} {transferencias.fecha}</p>
 
       <p>
