@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e9963543.css",
+    "main.js": "/static/js/main.33d48707.js",
+    "static/media/español.mp4": "/static/media/español.8c518e800b9c0bc9aad9.mp4",
+    "static/media/ingles.mp4": "/static/media/ingles.5ef63006806a14aa59f4.mp4",
+    "static/media/Firma-digital.png": "/static/media/Firma-digital.c9bbe33bd2ef8af3258d.png",
+    "static/media/video.mp4": "/static/media/video.9d54cbef1400523c9164.mp4",
+    "static/media/Feature-Image8.jpg": "/static/media/Feature-Image8.7f910955f66fb1c94c95.jpg",
+    "static/media/haciami.png": "/static/media/haciami.f206233a660aa1246c83.png",
+    "static/media/firma.png": "/static/media/firma.06686de195e6a9055bdb.png",
+    "static/media/thirdweb.png": "/static/media/thirdweb.4a1260bb078cb7ad327d.png",
+    "static/media/icono.png": "/static/media/icono.e12d74ce4e6f6d9e18e2.png",
+    "static/media/link.png": "/static/media/link.8a1b397dfa500e2f8945.png",
+    "static/media/es.png": "/static/media/es.1dacbcf529bb56f790c7.png",
+    "static/media/en.png": "/static/media/en.33ee10ad03bc7bf4e5b8.png",
+    "static/media/SmartContract.webp": "/static/media/SmartContract.3b6de2c44384742fdbdc.webp",
+    "static/media/loader.svg": "/static/media/loader.749ea58c204fa1a16c48a646540bac24.svg",
+    "static/media/sun.svg": "/static/media/sun.6a46fc6531dee8c998242af3e3284810.svg",
+    "static/media/transferencias.svg": "/static/media/transferencias.958d56b1f28753d193ddcf212a7668ab.svg",
+    "static/media/withdraw.svg": "/static/media/withdraw.4f1bac3962c29f3b7fa2ce5f6c9401dc.svg",
+    "static/media/dashboard.svg": "/static/media/dashboard.ad50c714ac2cdcba1d7781c628ce6251.svg",
+    "static/media/logo.svg": "/static/media/logo.1d71cb02bb8152159a2b0a6ea6342ef2.svg",
+    "static/media/payment.svg": "/static/media/payment.9a68d7dfef9bdeb28d2b61eb536e8d0b.svg",
+    "static/media/search.svg": "/static/media/search.122c257fee1ff743710b8b536e7b22ee.svg",
+    "static/media/logout.svg": "/static/media/logout.5d569ae321cd0588cb621851e8324f5e.svg",
+    "static/media/home.svg": "/static/media/home.40421189148232641f283af3d65254fa.svg",
+    "static/media/crear.svg": "/static/media/crear.512d4c59d8d029dcd6abdba8975a33ca.svg",
+    "index.html": "/index.html",
+    "static/media/profile.svg": "/static/media/profile.ed93256a58def1186cfa42d789e8e362.svg",
+    "static/media/type.svg": "/static/media/type.40282b569eaba9e952376b7e8c75f39e.svg",
+    "static/media/menu.svg": "/static/media/menu.6c52b7f597492f7ab662db01b08f0a0b.svg",
+    "main.e9963543.css.map": "/static/css/main.e9963543.css.map",
+    "main.33d48707.js.map": "/static/js/main.33d48707.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e9963543.css",
+    "static/js/main.33d48707.js"
+  ]
+}
