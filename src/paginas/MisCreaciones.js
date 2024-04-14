@@ -37,7 +37,7 @@ export const MisCreaciones = () => {
           const creador = await signer;
           const creadorLowerCase = creador.toLowerCase();
   
-          const respuesta = await axios.get(`http://transferenciasegura.sa-east-1.elasticbeanstalk.com/api/transferencias/?creador=${creadorLowerCase}`);
+          const respuesta = await axios.get(`//transferenciasegura.sa-east-1.elasticbeanstalk.com/api/transferencias/?creador=${creadorLowerCase}`);
   
           if (respuesta.data && respuesta.data.transferencias) {
             setMisCreaciones(respuesta.data.transferencias);
