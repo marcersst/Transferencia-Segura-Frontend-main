@@ -10,7 +10,9 @@ import { menu } from '../componentes/assets';
 
 export const NavBar = () => {
 
-  const {signer, esInicio, conectarContrato, setActivo}= useContrato()
+
+  const {signer, esInicio, conectarContrato, setActivo, contrato  } = useContrato();
+
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -30,9 +32,21 @@ export const NavBar = () => {
   const buttonStyle = signer ? 'bg-[#8c6dfd]' : 'bg-[#1dc071]';
 
 
+  const mintearusdt=async ()=>{
+    const contract = contrato.contract;
+    contract.mintearUsdt();
+  }
+
   return (
     <div className="md:flex-row w-full z-50 flex-col-reverse justify-between mb-[35px] gap-6">
   <div className="sm:flex hidden flex-row justify-end gap-4">
+
+  <BotonPersonalizado
+      btnType="button"
+      title={"Mint 100 USDT de prueba"}
+      styles={buttonStyle}
+      handleClick={mintearusdt}
+    />
     <BotonPersonalizado
       btnType="button"
       title={buttonText}

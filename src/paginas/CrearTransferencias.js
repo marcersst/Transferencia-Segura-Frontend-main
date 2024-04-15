@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useContrato } from '../context/contextApp';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -6,15 +6,12 @@ import { ethers } from 'ethers';
 import { Formulario } from '../helpers/Formulario';
 import { BotonPersonalizado } from '../helpers/BotonPersonalizado';
 import { CargandoFirma } from '../helpers/CargandoFirma';
-import abiusdt from "../helpers/abiusdt.json";
 
 
 export const CrearTransferencias = () => {
-  const { contrato, setActivo, signer } = useContrato();
+  const { contrato, setActivo, signer, contratousdt, conectarContratoUSDT } = useContrato();
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-  const abi= abiusdt
 
 
   const [cargando1, setCargando1] = useState(false);
@@ -33,11 +30,6 @@ export const CrearTransferencias = () => {
 
   const crearTransferencia = async (e) => {
     e.preventDefault();
-
-
-
-  const usdtContractAddress = '0xaA8E23Fb1079EA71e0a56F48a2aA51851D8433D0'; 
-
 
     try {
       if (!signer) {
@@ -63,18 +55,10 @@ export const CrearTransferencias = () => {
           { value: ethers.utils.parseEther(valor) }
         );
       } else if (moneda === 'USDT') {
-        const  { ethereum } = window;
-
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const firmante = provider.getSigner();
 
         const valorEnWei = ethers.utils.parseUnits(valor, 6);
 
-
-
-
-        const usdtContrato = new ethers.Contract(usdtContractAddress, abi, firmante);
-        const tx = await usdtContrato.approve("0x1122cFC291776DA2015E41c6bdeb2466BE25ED2a", valorEnWei, {gasLimit: 1000000 });
+        const tx = await contratousdt.usdt.approve("0x5924A5Aa0B825754b83692ed894CfA35d494626D", valorEnWei);
         await tx.wait();
 
 
@@ -146,6 +130,13 @@ export const CrearTransferencias = () => {
   const handleMonedaChange = (e) => {
     setMoneda(e.target.value);
   };
+
+
+
+  useEffect(() => {
+    conectarContratoUSDT()
+  }, [])
+  
 
   return (
     <div className="bg-[#1c1c24] flex justify-center items-center flex-col rounded-[10px] sm:p-10 p-4 animate__animated animate__fadeIn ">

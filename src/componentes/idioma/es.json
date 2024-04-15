@@ -1,7 +1,7 @@
 {
     "Crear_Transferencia_Segura": "Crear Transferencia Segura",
     "valor": "Cantidad",
-    "Valor_Eth": "",
+    "Valor_Eth": "Minimo 50 USDT o 0.12 BNB",
     "Firmante_1": "Firmante 1 ",
     "Firmante_2": "Firmante 2 ",
     "Destino": "Destino",
