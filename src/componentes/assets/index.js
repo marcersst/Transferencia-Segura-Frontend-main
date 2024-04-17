@@ -12,7 +12,7 @@ import menu from './menu.svg';
 import home from './home.svg';
 import loader from './loader.svg';
 import thirdweb from './thirdweb.png';
-import Smart from "./SmartContract.webp";
+import Smart from "./SmartContract.png";
 import Firma from "./Firma-digital.png"
 import Destino from "./Feature-Image8.jpg"
 import creation from "./link.png"
