@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useContrato } from '../context/contextApp';
-import { ingles, español } from "../componentes/assets"
 
 export const Inicio = () => {
 
@@ -35,7 +34,7 @@ export const Inicio = () => {
         </div>
         <div className="">
           <video width="800" height="800" controls className="rounded-lg">
-            <source src={idioma === 'es' ? español : ingles} type="video/mp4" />
+            <source src={idioma === 'es' ? "https://archivos2.s3.sa-east-1.amazonaws.com/ingles.mp4" : "https://archivos2.s3.sa-east-1.amazonaws.com/espa%C3%B1ol.mp4"} type="video/mp4" />
             <p className="font-epilogue text-sm text-white mb-4">
               {t("Tu_navegador_no_admite_el_elemento_de_video")}
             </p>
