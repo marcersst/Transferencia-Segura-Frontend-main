@@ -88,7 +88,7 @@ export const CrearTransferencias = () => {
       const idTransaccion = transaccionesCount.toNumber();
 
       const response = await fetch(
-        'http://transferenciasegura.sa-east-1.elasticbeanstalk.com/api/transferencias/',
+        'https://backend-transferencia-segura-production.up.railway.app/api/transferencias/',
         {
           method: 'POST',
           headers: {
