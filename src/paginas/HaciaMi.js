@@ -41,7 +41,7 @@ export const HaciaMi = () => {
           const destinatarioLowerCase = destinatario.toLowerCase();
           console.log(destinatarioLowerCase)
   
-          const respuesta = await axios.get(`https://backend-transferencia-segura-production.up.railway.app//api/transferencias/?destino=${destinatarioLowerCase}`);
+          const respuesta = await axios.get(`https://backend-transferencia-segura-production.up.railway.app/api/transferencias/?destino=${destinatarioLowerCase}`);
   
           if (respuesta.data && respuesta.data.transferencias) {
             sethaciaMi(respuesta.data.transferencias);
