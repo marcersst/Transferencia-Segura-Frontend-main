@@ -46,6 +46,7 @@ export const HaciaMi = () => {
           if (respuesta.data && respuesta.data.transferencias) {
             sethaciaMi(respuesta.data.transferencias);
           }
+          else {sethaciaMi([])}
           
           setEstaCargando(false)
         } catch (error) {
@@ -53,7 +54,9 @@ export const HaciaMi = () => {
           setEstaCargando(false)
         }
       }
-      else{setEstaCargando(false)}
+      else{
+        sethaciaMi([])
+        setEstaCargando(false)}
     };
 
     ObtenerTransferencias();

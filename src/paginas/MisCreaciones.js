@@ -42,18 +42,21 @@ export const MisCreaciones = () => {
           if (respuesta.data && respuesta.data.transferencias) {
             setMisCreaciones(respuesta.data.transferencias);
           }
+          else {setMisCreaciones([])}
           
           setEstaCargando(false)
         } catch (error) {
-          console.error("error al obtener datos desde la base de Mongo ", error);
+          console.error("Hubo un error al obtener datos desde la base de Mongo ", error);
           setEstaCargando(false)
         }
       }
-      else{setEstaCargando(false)}
+      else{
+        setMisCreaciones([])
+        setEstaCargando(false)}
     };
 
     ObtenerTransferencias();
-  }, [signer]); 
+  }, [signer]);
  
 
   return (
