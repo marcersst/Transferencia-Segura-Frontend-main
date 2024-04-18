@@ -46,6 +46,7 @@ export const MisFirmas = () => {
           if (respuesta.data && respuesta.data.transferencias) {
             setmisFirmas(respuesta.data.transferencias);
           }
+          else {setmisFirmas([])}
           
           setEstaCargando(false)
         } catch (error) {
@@ -53,7 +54,9 @@ export const MisFirmas = () => {
           setEstaCargando(false)
         }
       }
-      else{setEstaCargando(false)}
+      else{
+        setmisFirmas([])
+        setEstaCargando(false)}
     };
 
     ObtenerTransferencias();
