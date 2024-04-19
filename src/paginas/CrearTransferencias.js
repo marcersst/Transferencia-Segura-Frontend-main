@@ -16,9 +16,9 @@ export const CrearTransferencias = () => {
 
   const [cargando1, setCargando1] = useState(false);
   const [moneda, setMoneda] = useState('BNB');
-  const [destino, setDestino] = useState('0x82847a7D46E251B65a8e03B3E2DF8A61CeCdDEa4');
-  const [firmante1, setFirmante1] = useState('0x82847a7D46E251B65a8e03B3E2DF8A61CeCdDEa4');
-  const [firmante2, setFirmante2] = useState('0x4C3e32A479cF05e20f0075D1F22c5c683356C8D1');
+  const [destino, setDestino] = useState('');
+  const [firmante1, setFirmante1] = useState('');
+  const [firmante2, setFirmante2] = useState('');
   const [valor, setValor] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [transaccionExitosa, setTransaccionExitosa] = useState(null);
