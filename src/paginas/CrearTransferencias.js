@@ -114,6 +114,7 @@ export const CrearTransferencias = () => {
         destino: destinoAddress,
         firmante1: firmante1Address,
         firmante2: firmante2Address,
+        moneda: moneda
       });
 
       if (!response.ok && transaccionExitosa) {
@@ -215,7 +216,7 @@ export const CrearTransferencias = () => {
           </h1>
           <br />
           <p>
-            <strong>{t('Valor')}:</strong> {transaccionExitosa.valor} ETH
+            <strong>{t('Valor')}:</strong> {transaccionExitosa.valor} {transaccionExitosa.moneda}
           </p>
           <p>
             <strong>{t('validador_1')}:</strong> {transaccionExitosa.firmante1}
