@@ -49,7 +49,6 @@ const ContratoProvider = ({ children }) => {
                         setContrato({ provider, signer, contract });
 
                     } catch (error) {
-                        console.error('Error al conectar el contrato:', error);
                     }
                 }
             } else {

@@ -39,7 +39,6 @@ export const MisFirmas = () => {
           
           const firmante = await signer;
           const firmanteLowerCase = firmante.toLowerCase();
-          console.log(firmanteLowerCase)
   
           const respuesta = await axios.get(`https://backend-transferencia-segura-production.up.railway.app/api/transferencias/?firmantes=${firmanteLowerCase}`);
   
