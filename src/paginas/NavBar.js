@@ -2,9 +2,11 @@ import { useTranslation } from 'react-i18next';
 import { BotonPersonalizado } from '../helpers/BotonPersonalizado'
 import { useContrato } from '../context/contextApp'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { navlinks } from '../componentes/constants';
 import { menu } from '../componentes/assets';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -32,10 +34,22 @@ export const NavBar = () => {
 
 
   const mintearusdt=async ()=>{
+
+    if(contrato){
     const contract = contrato.contract;
-    contract.mintearUsdt();
+      contract.mintearUsdt();
+    }
+    else{
+      Swal.fire("Conectate a la Red Sepolia!");
+    }
   }
 
+  useEffect(() => {
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload();
+    });
+  }, []);
+  
   return (
     <div className="md:flex-row w-full z-50 flex-col-reverse justify-between mb-[35px] gap-6">
   <div className="sm:flex hidden flex-row justify-end gap-4">
@@ -57,6 +71,7 @@ export const NavBar = () => {
       styles={buttonStyle}
       handleClick={conectarContrato}
     />
+
   </div>
   <div className="sm:hidden flex justify-between items-center relative">
     <img 

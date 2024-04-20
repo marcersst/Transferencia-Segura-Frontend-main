@@ -6,6 +6,7 @@ import { ethers } from 'ethers';
 import { Formulario } from '../helpers/Formulario';
 import { BotonPersonalizado } from '../helpers/BotonPersonalizado';
 import { CargandoFirma } from '../helpers/CargandoFirma';
+import Swal from 'sweetalert2';
 
 
 export const CrearTransferencias = () => {
@@ -123,8 +124,8 @@ export const CrearTransferencias = () => {
         );
       }
     } catch (error) {
-      console.error(t('Error_al_crear_la_transaccion'),error);
       setCargando1(false);
+      Swal.fire("Por favor conectate a la red Sepolia!");
     }
   };
 

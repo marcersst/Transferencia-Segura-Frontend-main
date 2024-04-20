@@ -3,6 +3,8 @@ import { ethers } from 'ethers';
 import abi from "../helpers/abi.json";
 import abiusdt from "../helpers/abiusdt.json";
 import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 
 const AppContext = createContext();
 
@@ -18,6 +20,7 @@ const ContratoProvider = ({ children }) => {
     const esInicio = location.pathname === '/';
     const navigate = useNavigate();
 
+
     const conectarContrato = async () =>  {
         const { ethereum } = window;
 
@@ -27,7 +30,7 @@ const ContratoProvider = ({ children }) => {
 
             if (!signer) {
                 if (!supportedNetwork) {
-                    alert('Por favor, conéctese a una red SEPOLIA para utilizar la app.');
+                    Swal.fire("Por favor conectate a la red Sepolia!");
                 } else {
                     try {
                         const contractAddres = '0x5924A5Aa0B825754b83692ed894CfA35d494626D';
@@ -47,12 +50,11 @@ const ContratoProvider = ({ children }) => {
                         const contract = new ethers.Contract(contractAddres, contractABI, signer);
 
                         setContrato({ provider, signer, contract });
-
                     } catch (error) {
                     }
                 }
             } else {
-                if (signer && activo !== 'crearTransferencias' && esInicio) {
+                if (signer && activo  !== 'crearTransferencias' && esInicio) {
                     setActivo("Crear Transferencias");
                     navigate('crearTransferencias');
                 }
@@ -97,7 +99,7 @@ const ContratoProvider = ({ children }) => {
     }, []);
 
     return (
-        <AppContext.Provider value={{ contrato, contratousdt, conectarContrato, setAccount, account, signer, setSigner, idioma, setIdioma, activo, setActivo, esInicio,conectarContratoUSDT }}>
+        <AppContext.Provider value={{contrato, contratousdt, conectarContrato, setAccount, account, signer, setSigner, idioma, setIdioma, activo, setActivo, esInicio,conectarContratoUSDT }}>
             {children}
         </AppContext.Provider>
     );
