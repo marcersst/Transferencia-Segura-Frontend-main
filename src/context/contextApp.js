@@ -58,7 +58,6 @@ const ContratoProvider = ({ children }) => {
                 }
             }
         } else {
-            console.error('MetaMask no está instalado o no se detecta.');
         }
     };
 
@@ -86,7 +85,6 @@ const ContratoProvider = ({ children }) => {
                 setContratoUsdt({ provider, signer, usdt });
 
             } catch (error) {
-                console.error('Error al conectar el contrato USDT:', error);
             }
         } else {
             console.error('MetaMask no está instalado o no se detecta.');
