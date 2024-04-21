@@ -93,11 +93,6 @@ const ContratoProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        conectarContrato();
-        conectarContratoUSDT();
-    }, []);
-
     return (
         <AppContext.Provider value={{contrato, contratousdt, conectarContrato, setAccount, account, signer, setSigner, idioma, setIdioma, activo, setActivo, esInicio,conectarContratoUSDT }}>
             {children}
