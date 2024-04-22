@@ -22,6 +22,9 @@ const ContratoProvider = ({ children }) => {
         try {
             const { ethereum } = window;
 
+            console.log(ethereum)
+
+
             if (!ethereum) {
                 throw new Error('MetaMask no está instalado o no se detecta.');
             }
