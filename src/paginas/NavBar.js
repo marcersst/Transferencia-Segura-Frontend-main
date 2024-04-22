@@ -7,9 +7,6 @@ import { navlinks } from '../componentes/constants';
 import { menu } from '../componentes/assets';
 import Swal from 'sweetalert2';
 
-
-
-
 export const NavBar = () => {
 
 
@@ -45,11 +42,13 @@ export const NavBar = () => {
   }
 
   useEffect(() => {
-
     if(window.ethereum){
       window.ethereum.on('chainChanged', () => {
         window.location.reload();
       });
+    }
+    else{
+      console.log("no se escuentra proveedor web3")
     }
   }, []);
   
@@ -61,7 +60,7 @@ export const NavBar = () => {
     activo === "Crear Transferencias" ? (
     <BotonPersonalizado
       btnType="button"
-      title={"Mint 100 USDT de prueba"}
+      title={"Mint 100 USDT"}
       styles={buttonStyle}
       handleClick={mintearusdt}
     />
@@ -121,6 +120,5 @@ export const NavBar = () => {
 
   )
 
-  
 };
 
