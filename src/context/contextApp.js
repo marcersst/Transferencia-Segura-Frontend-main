@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, { useState, createContext, useContext } from 'react';
 import { ethers } from 'ethers';
 import abi from "../helpers/abi.json";
 import abiusdt from "../helpers/abiusdt.json";
@@ -39,11 +39,12 @@ const ContratoProvider = ({ children }) => {
                         const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
                         const selectedAddress = accounts[0];
                         setSigner(selectedAddress);
-
-                        ethereum.on('accountsChanged', (newAccounts) => {
-                            const newAddress = newAccounts[0];
-                            setSigner(newAddress);
-                        });
+                        if (ethereum) {
+                            ethereum.on('accountsChanged', (newAccounts) => {
+                                const newAddress = newAccounts[0];
+                                setSigner(newAddress);
+                            });
+                        }
 
                         const provider = new ethers.providers.Web3Provider(ethereum);
                         const signer = provider.getSigner();
@@ -75,10 +76,12 @@ const ContratoProvider = ({ children }) => {
                 const selectedAddress = accounts[0];
                 setSigner(selectedAddress);
 
-                ethereum.on('accountsChanged', (newAccounts) => {
-                    const newAddress = newAccounts[0];
-                    setSigner(newAddress);
-                });
+                if (ethereum) {
+                    ethereum.on('accountsChanged', (newAccounts) => {
+                        const newAddress = newAccounts[0];
+                        setSigner(newAddress);
+                    });
+                }
 
                 const provider = new ethers.providers.Web3Provider(ethereum);
                 const signer = provider.getSigner();
