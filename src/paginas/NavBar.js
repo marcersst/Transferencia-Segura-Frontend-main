@@ -45,9 +45,12 @@ export const NavBar = () => {
   }
 
   useEffect(() => {
-    window.ethereum.on('chainChanged', () => {
-      window.location.reload();
-    });
+
+    if(window.ethereum){
+      window.ethereum.on('chainChanged', () => {
+        window.location.reload();
+      });
+    }
   }, []);
   
   return (
