@@ -61,7 +61,6 @@ const ContratoProvider = ({ children }) => {
                 }
             }
         } catch (error) {
-            console.error('Error al conectar con el contrato:', error);
         }
     };
 
@@ -91,7 +90,6 @@ const ContratoProvider = ({ children }) => {
 
             setContratoUsdt({ provider, signer, usdt });
         } catch (error) {
-            console.error('Error al conectar con el contrato USDT:', error);
         }
     };
 
